@@ -31,3 +31,18 @@ describe("ensure correct h3 text", () => {
     expect(wrapper.text()).toMatch(/Let us test your arithmetic./i);
   });
 });
+
+it("renders correctly with different data", async () => {
+  const wrapper = mount(App);
+  wrapper.setData({ x1: 5, x2: 10 });
+  await wrapper.vm.$nextTick();
+  expect(wrapper.text()).toContain("10");
+});
+
+it("button click without correct sum", () => {
+  const wrapper = mount(App);
+  expect(wrapper.vm.message).toBe("");
+  const button = wrapper.find("button");
+  button.trigger("click");
+  expect(wrapper.vm.message).toBe("Try Again");
+});
