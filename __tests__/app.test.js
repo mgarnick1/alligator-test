@@ -8,13 +8,13 @@ describe("App", () => {
   });
 });
 
-describe("Mounted App", () => {
-  const wrapper = mount(App);
+// describe("Mounted App", () => {
+//   const wrapper = mount(App);
 
-  test("is a Vue instance", () => {
-    expect(wrapper.isVueInstance()).toBeTruthy();
-  });
-});
+//   test("is a Vue instance", () => {
+//     expect(wrapper.isVueInstance()).toBeTruthy();
+//   });
+// });
 
 describe("input exists", () => {
   const wrapper = mount(App);
@@ -45,4 +45,12 @@ it("button click without correct sum", () => {
   const button = wrapper.find("button");
   button.trigger("click");
   expect(wrapper.vm.message).toBe("Try Again");
+});
+
+it("button click with correct sum", () => {
+  const wrapper = mount(App);
+  wrapper.setData({ guess: wrapper.vm.x1 + wrapper.vm.x2 });
+  const button = wrapper.find("button");
+  button.trigger("click");
+  expect(wrapper.vm.message).toBe("Success!");
 });
