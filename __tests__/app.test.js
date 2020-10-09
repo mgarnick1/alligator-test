@@ -24,3 +24,10 @@ describe("input exists", () => {
     expect(input.exists()).toBe(true);
   });
 });
+
+describe("ensure correct h3 text", () => {
+  test("render h3 lets test your arithmetic", async () => {
+    const wrapper = mount(App);
+    expect(wrapper.text()).toMatch(/Let us test your arithmetic./i);
+  });
+});
